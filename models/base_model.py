@@ -16,3 +16,15 @@ class BaseModel:
     def __str__(self):
         """This function returns the string representation of a BaseModel object"""
         return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+
+    def save(self):
+        """Update with current time"""
+        self.updated_at = datetime.now()
+
+    def to_dict(self):
+        """Return the dictionary of the BaseModel"""
+        d = self.__dict__.copy()
+        d["created_at"] = self.created_at.isoformat()
+        d["updated_at"] = self.updated_at.isoformat()
+        d["__class__"] = self.__class__.__name__
+        return d
