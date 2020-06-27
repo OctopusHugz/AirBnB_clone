@@ -7,11 +7,18 @@ from datetime import datetime
 class BaseModel:
     """This is an instance of the BaseModel class"""
 
-    def __init__(self):
-        """This function creates an instance of the BaseModel class"""
+    def __init__(self, *args, **kwargs):
+        """This function creates an instance of the BaseModel class, *args is ignored"""
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
+        date_format = "%Y-%m-%dT%H:%M:%S.%f"
+        if len(kwargs) != 0:
+            for x, y in kwargs.items():
+                if x == "created_at" or x == "updated_at":
+                    self.__dict__[x] = datetime.strptime(y, date_format)
+                else:
+                    self.__dict__[x] = y
 
     def __str__(self):
         """This function returns the string representation of a BaseModel object"""
