@@ -2,7 +2,7 @@
 """This module creates a BaseModel class"""
 from uuid import uuid4
 from datetime import datetime
-from models.__init__ import storage
+from models import storage
 
 
 class BaseModel:
@@ -20,7 +20,6 @@ class BaseModel:
                     self.__dict__[x] = datetime.strptime(y, date_format)
                 elif x != "__class__":
                     self.__dict__[x] = y
-        # if it’s a new instance (not from a dictionary representation), add a call to the method new(self) on storage
         elif not (kwargs):
             storage.new(self)
 
@@ -35,8 +34,6 @@ class BaseModel:
 
     def to_dict(self):
         """Returns the dictionary representation of the BaseModel instance"""
-        # Do we need to create the dict entirely from the keys in self.__dict__.keys() ?
-        # import copy copy.deepcopy(self.__dict__) might be another option ?
         d = self.__dict__.copy()
         d["created_at"] = self.created_at.isoformat()
         d["updated_at"] = self.updated_at.isoformat()

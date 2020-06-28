@@ -2,7 +2,7 @@
 """This module creates a FileStorage class"""
 from uuid import uuid4
 from datetime import datetime
-from os.path import exists
+from os.path import isfile
 import json
 
 
@@ -22,12 +22,19 @@ class FileStorage:
 
     def save(self):
         """This function serializes __objects to the JSON file"""
+        for obj_id in FileStorage.__objects:
+            if type(FileStorage.__objects[obj_id]) != dict:
+                FileStorage.__objects[obj_id] = FileStorage.__objects[obj_id].to_dict(
+                )
         with open(FileStorage.__file_path, "w") as fp:
-            fp.write(json.dumps(FileStorage.__objects))
+            json.dump(FileStorage.__objects, fp)
 
     def reload(self):
         """This function deserializes the JSON file to __objects, if the JSON file exists"""
-        if exists(FileStorage.__file_path):
+        from models.base_model import BaseModel
+        if isfile(FileStorage.__file_path):
             with open(FileStorage.__file_path) as fp:
-                object_string = fp.read()
-            return json.loads(object_string)
+                FileStorage.__objects = json.load(fp)
+            for obj_id in FileStorage.__objects:
+                FileStorage.__objects[obj_id] = BaseModel(
+                    **FileStorage.__objects[obj_id])
