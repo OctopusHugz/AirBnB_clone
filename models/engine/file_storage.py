@@ -12,14 +12,13 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """This function returns a dictionary of all the FileStorage objects"""
+        """This function returns the dictionary FileStorage.__objects"""
         return FileStorage.__objects
 
     def new(self, obj):
         """This function sets in __objects the obj with key <obj class name>.id"""
         key_string = obj.__class__.__name__ + "." + obj.id
-        print(key_string)
-        FileStorage.__objects[key_string] = obj
+        FileStorage.__objects[key_string] = obj.to_dict()
 
     def save(self):
         """This function serializes __objects to the JSON file"""
@@ -30,5 +29,5 @@ class FileStorage:
         """This function deserializes the JSON file to __objects, if the JSON file exists"""
         if exists(FileStorage.__file_path):
             with open(FileStorage.__file_path) as fp:
-                objects = fp.read()
-            return json.loads(objects)
+                object_string = fp.read()
+            return json.loads(object_string)
