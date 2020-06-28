@@ -27,8 +27,8 @@ class FileStorage:
             fp.write(json.dumps(FileStorage.__objects))
 
     def reload(self):
-        """This function deserializes the JSON file to __objects if the JSON file (__file_path) exists"""
-        if exists("FileStorage.__file_path"):
+        """This function deserializes the JSON file to __objects, if the JSON file exists"""
+        if exists(FileStorage.__file_path):
             with open(FileStorage.__file_path) as fp:
                 objects = fp.read()
             return json.loads(objects)
