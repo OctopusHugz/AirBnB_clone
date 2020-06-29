@@ -40,14 +40,8 @@ class BaseModel:
         d["__class__"] = self.__class__.__name__
         return d
 
-    def update(self, *args):
-        """ updated and returns dictionary """
-        s = storage.all()
-        name = args[0]
-        object_id = args[1]
-        key = args[2]
-        value = args[3]
-        print(s[name + "." + object_id])
-        s[name + "." + object_id].__dict__[key] = value
-        print(s[name + "." + object_id])
-        storage.save()
+    def update(self, *args, **kwargs):
+        """ update from console """
+        for x, y in kwargs.items():
+            self.__dict__[x] = y
+        self.save()

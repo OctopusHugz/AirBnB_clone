@@ -119,8 +119,10 @@ class HBNBCommand(cmd.Cmd):
             return
         value = arg.split()[3]
         s = storage.all()
-        b = BaseModel()
-        b.update(name, object_id, key, value)
+        for k, val in s.items():
+            if k == c + "." + object_id:
+                s[k].update({key: value})
+        storage.save()
 
 
 if __name__ == "__main__":
