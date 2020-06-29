@@ -39,3 +39,15 @@ class BaseModel:
         d["updated_at"] = self.updated_at.isoformat()
         d["__class__"] = self.__class__.__name__
         return d
+
+    def update(self, *args):
+        """ updated and returns dictionary """
+        s = storage.all()
+        name = args[0]
+        object_id = args[1]
+        key = args[2]
+        value = args[3]
+        print(s[name + "." + object_id])
+        s[name + "." + object_id].__dict__[key] = value
+        print(s[name + "." + object_id])
+        storage.save()
