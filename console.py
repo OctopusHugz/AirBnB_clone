@@ -77,7 +77,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             console_storage = storage.all()
             try:
-                del(console_storage[instance_id])
+                del (console_storage[instance_id])
+                storage.save()
             except:
                 print("** no instance found **")
 
@@ -120,6 +121,7 @@ class HBNBCommand(cmd.Cmd):
         s = storage.all()
         b = BaseModel()
         b.update(name, object_id, key, value)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
