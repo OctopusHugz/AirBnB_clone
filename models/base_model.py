@@ -39,9 +39,3 @@ class BaseModel:
         d["updated_at"] = self.updated_at.isoformat()
         d["__class__"] = self.__class__.__name__
         return d
-
-    def update(self, *args, **kwargs):
-        """ update from console """
-        for x, y in kwargs.items():
-            self.__dict__[x] = y
-        self.save()

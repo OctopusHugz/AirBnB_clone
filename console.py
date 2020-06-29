@@ -2,12 +2,14 @@
 """This module creates the HBNB interactive console"""
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
     """This class creates an instance of the HBNB Command interpreter"""
     prompt = "(hbnb) "
+    class_list = ["BaseModel", "User"]
     # Do we need to override do_help(self, arg) or can we just use docstring?
 
     def do_quit(self, arg):
@@ -27,10 +29,13 @@ class HBNBCommand(cmd.Cmd):
         """Create command to create a new instance of BaseModel, saves it to the JSON file and print the id\n"""
         if not arg:
             print("** class name missing **")
-        elif arg != "BaseModel":  # make list with different classes?
+        elif arg not in HBNBCommand.class_list:
             print("** class doesn't exist **")
         else:
-            new_model = BaseModel(arg)
+            if arg == "BaseModel":
+                new_model = BaseModel()
+            elif arg == "User":
+                new_model = User()
             print(new_model.id)
             new_model.save()
 
@@ -46,13 +51,14 @@ class HBNBCommand(cmd.Cmd):
                 instance_id = class_name + "." + obj_id
         if not arg:
             print("** class name missing **")
-        elif string_list[0] != "BaseModel":
+        elif string_list[0] not in HBNBCommand.class_list:
             print("** class doesn't exist **")
         elif len(string_list) != 2:
             print("** instance id missing **")
         else:
             console_storage = storage.all()
             try:
+                # Change BaseModel to actual __class__ name
                 instance = BaseModel(console_storage[instance_id])
                 print(instance)
             except:
@@ -70,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
                 instance_id = class_name + "." + obj_id
         if not arg:
             print("** class name missing **")
-        elif string_list[0] != "BaseModel":
+        elif string_list[0] not in HBNBCommand.class_list:
             print("** class doesn't exist **")
         elif len(string_list) != 2:
             print("** instance id missing **")
@@ -87,42 +93,45 @@ class HBNBCommand(cmd.Cmd):
         console_storage = storage.all()
         if not arg:
             for obj_id in console_storage:
+                # Needs to print the instance and not the dict of instance!
                 print(console_storage[obj_id])
-        elif arg != "BaseModel":
+        elif arg not in HBNBCommand.class_list:
             print("** class doesn't exist **")
         else:
             for obj_id in console_storage:
                 if console_storage[obj_id]["__class__"] == arg:
+                    # Needs to print the instance and not the dict of instance!
                     print(console_storage[obj_id])
 
     def do_update(self, arg):
         """Update command to add or update an instance's attribute based on the class name and id, then save the change into the JSON file\n"""
-        l = len(arg.split())
-        c = "BaseModel"
-        if l < 1:
+        string_list = []
+        instance_id = ""
+        string_list = arg.split(" ")
+        if len(string_list) >= 1:
+            class_name = string_list[0]
+            if len(string_list) >= 2:
+                obj_id = string_list[1]
+                instance_id = class_name + "." + obj_id
+                if len(string_list) >= 3:
+                    key = string_list[2]
+                    if len(string_list) >= 4:
+                        value = string_list[3]
+        if not arg:
             print("** class name missing **")
-            return
-        name = arg.split()[0]
-        if name != c:
+        elif string_list[0] not in HBNBCommand.class_list:
             print("** class doesn't exist **")
-            return
-        if l < 2:
+        elif len(string_list) < 2:
             print("** instance id missing **")
-            return
-        object_id = arg.split()[1]
-        if l < 3:
+        elif len(string_list) < 3:
             print("** attribute name missing **")
-            return
-        key = arg.split()[2]
-        if l < 4:
+        elif len(string_list) < 4:
             print("** value missing **")
-            return
-        value = arg.split()[3]
-        s = storage.all()
-        for k, val in s.items():
-            if k == c + "." + object_id:
-                s[k].update({key: value})
-        storage.save()
+        else:
+            s = storage.all()
+            instance_id = class_name + "." + obj_id
+            s[instance_id].update({key: value})
+            storage.save()
 
 
 if __name__ == "__main__":
