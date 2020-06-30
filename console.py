@@ -14,11 +14,11 @@ class HBNBCommand(cmd.Cmd):
     # Do we need to override do_help(self, arg) or can we just use docstring?
 
     def do_quit(self, arg):
-        """Quit command to exit the console"""
+        """Quit command to exit the console\n"""
         exit()
 
     def do_EOF(self, arg):
-        """EOF command to exit the console"""
+        """EOF command to exit the console\n"""
         print()
         exit()
 
@@ -27,9 +27,8 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Create command to create a new instance of BaseModel,
-        saves it to the JSON file and print the id
-        """
+        """Create command to create a new instance, save it to the
+JSON file and print the id\n"""
         if not arg:
             print("** class name missing **")
         elif arg not in HBNBCommand.class_list:
@@ -43,9 +42,8 @@ class HBNBCommand(cmd.Cmd):
             new_model.save()
 
     def do_show(self, arg):
-        """Show command to print the string representation
-        of an instance based on the class name and id
-        """
+        """Show command to print the string representation of an instance
+based on the class name and id\n"""
         string_list = []
         instance_id = ""
         string_list = arg.split(" ")
@@ -68,9 +66,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Destroy command to delete an instance based on
-        the class name and id, then save the change into the JSON file
-        """
+        """Destroy command to delete an instance based on the class name
+and id, then save the change into the JSON file\n"""
         string_list = []
         instance_id = ""
         string_list = arg.split(" ")
@@ -94,10 +91,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
-        """All command to print the string representation of all
-        instances in storage, based on the class name if given.
-        If not, print the string representation of all instances in storage
-        """
+        """All command to print the string representation of all instances in
+storage, based on the class name if given. If not, print the
+string representation of all instances in storage\n"""
         console_storage = storage.all()
         instance_list = []
         if not arg:
@@ -112,9 +108,8 @@ class HBNBCommand(cmd.Cmd):
         print(instance_list)
 
     def do_update(self, arg):
-        """Update command to add or update an instance's
-        attribute based on the class name and id, then
-        save the change into the JSON file"""
+        """Update command to add or update an instance's attribute based on
+the class name and id, then save the change into the JSON file\n"""
         # Check following conditions have been met:
         # All other arguments should not be used
         # (Ex: $ update BaseModel 1234-1234-1234 email
