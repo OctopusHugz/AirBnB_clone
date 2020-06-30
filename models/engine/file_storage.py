@@ -13,6 +13,7 @@ class FileStorage:
 
     def all(self):
         """This function returns the dictionary FileStorage.__objects"""
+        FileStorage.reload(self) ###### Added this here <<<<<<
         return FileStorage.__objects
 
     def new(self, obj):
@@ -24,8 +25,7 @@ class FileStorage:
         """This function serializes __objects to the JSON file"""
         for obj_id in FileStorage.__objects:
             if type(FileStorage.__objects[obj_id]) != dict:
-                FileStorage.__objects[obj_id] = FileStorage.__objects[obj_id].to_dict(
-                )
+                FileStorage.__objects[obj_id] = FileStorage.__objects[obj_id].to_dict()
         with open(FileStorage.__file_path, "w") as fp:
             json.dump(FileStorage.__objects, fp)
 
@@ -36,5 +36,6 @@ class FileStorage:
             with open(FileStorage.__file_path) as fp:
                 FileStorage.__objects = json.load(fp)
             for obj_id in FileStorage.__objects:
+                # Need to make the instantiation below universal for whatever class we're reloading, not just BaseModel
                 FileStorage.__objects[obj_id] = BaseModel(
                     **FileStorage.__objects[obj_id])

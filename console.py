@@ -37,7 +37,8 @@ class HBNBCommand(cmd.Cmd):
             elif arg == "User":
                 new_model = User()
             print(new_model.id)
-            new_model.save()
+            storage.new(new_model)
+            storage.save()
 
     def do_show(self, arg):
         """Show command to print the string representation of an instance based on the class name and id\n"""
@@ -58,8 +59,9 @@ class HBNBCommand(cmd.Cmd):
         else:
             console_storage = storage.all()
             try:
-                # Change BaseModel to actual __class__ name
-                instance = BaseModel(console_storage[instance_id])
+                instance = console_storage[instance_id]
+                #instance_class = eval(class_name)
+                #instance = instance_class(console_storage[instance_id])
                 print(instance)
             except:
                 print("** no instance found **")
@@ -91,16 +93,24 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """All command to print the string representation of all instances in storage, based on the class name if given. If not, print the string representation of all instances in storage\n"""
         console_storage = storage.all()
+        console_s_copy = console_storage.copy()
+        instance_list = []
         if not arg:
-            for obj_id in console_storage:
-                # Needs to print the instance and not the dict of instance!
-                print(console_storage[obj_id])
+            for obj_id in console_s_copy:
+                #class_name = console_storage[obj_id].__class__.__name__
+                #instance_class = eval(class_name)
+                #instance = instance_class(console_storage[obj_id])
+                instance = (console_storage[obj_id])
+                print(instance)
         elif arg not in HBNBCommand.class_list:
             print("** class doesn't exist **")
         else:
-            for obj_id in console_storage:
-                if console_storage[obj_id]["__class__"] == arg:
+            for obj_id in console_s_copy:
+                if console_storage[obj_id].__class__.__name__ == arg:
                     # Needs to print the instance and not the dict of instance!
+                    #instance_class = eval(arg)
+                    #instance = instance_class(console_storage[obj_id])
+                    #print(instance)
                     print(console_storage[obj_id])
 
     def do_update(self, arg):
@@ -129,7 +139,11 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             s = storage.all()
-            instance_id = class_name + "." + obj_id
+            for obj_id in s:
+                if type(s[obj_id]) != dict:
+                    s[obj_id] = s[obj_id].to_dict()
+            value = value.strip("\"")
+            # The attribute value must be casted to the attribute type
             s[instance_id].update({key: value})
             storage.save()
 
