@@ -105,16 +105,14 @@ string representation of all instances in storage\n"""
             for obj_id in console_storage:
                 if console_storage[obj_id].__class__.__name__ == arg:
                     instance_list.append(str(console_storage[obj_id]))
-        print(instance_list)
+        if len(console_storage) != 0:
+            print(instance_list)
 
     def do_update(self, arg):
         """Update command to add or update an instance's attribute based on
 the class name and id, then save the change into the JSON file\n"""
         # Check following conditions have been met:
-        # All other arguments should not be used
-        # (Ex: $ update BaseModel 1234-1234-1234 email
-        # "airbnb@holbertonschool.com" first_name "Betty"= $
-        # update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com")
+        # A string argument with a space must be between double quote
         # The attribute value must be casted to the attribute type
         string_list = []
         instance_id = ""
