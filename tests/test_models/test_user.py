@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-""" Test State Module """
 import unittest
 from models.user import User
 import datetime
