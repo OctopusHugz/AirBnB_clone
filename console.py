@@ -4,6 +4,7 @@ import cmd
 from models.base_model import BaseModel
 from models.user import User
 from models import storage
+from datetime import datetime
 
 
 class HBNBCommand(cmd.Cmd):
@@ -37,8 +38,7 @@ class HBNBCommand(cmd.Cmd):
             elif arg == "User":
                 new_model = User()
             print(new_model.id)
-            storage.new(new_model)
-            storage.save()
+            new_model.save()
 
     def do_show(self, arg):
         """Show command to print the string representation of an instance based on the class name and id\n"""
@@ -59,10 +59,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             console_storage = storage.all()
             try:
-                instance = console_storage[instance_id]
-                #instance_class = eval(class_name)
-                #instance = instance_class(console_storage[instance_id])
-                print(instance)
+                print(console_storage[instance_id])
             except:
                 print("** no instance found **")
 
@@ -93,28 +90,23 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """All command to print the string representation of all instances in storage, based on the class name if given. If not, print the string representation of all instances in storage\n"""
         console_storage = storage.all()
-        console_s_copy = console_storage.copy()
         instance_list = []
         if not arg:
-            for obj_id in console_s_copy:
-                #class_name = console_storage[obj_id].__class__.__name__
-                #instance_class = eval(class_name)
-                #instance = instance_class(console_storage[obj_id])
-                instance = (console_storage[obj_id])
-                print(instance)
+            for obj_id in console_storage:
+                instance_list.append(str(console_storage[obj_id]))
         elif arg not in HBNBCommand.class_list:
             print("** class doesn't exist **")
         else:
-            for obj_id in console_s_copy:
+            for obj_id in console_storage:
                 if console_storage[obj_id].__class__.__name__ == arg:
-                    # Needs to print the instance and not the dict of instance!
-                    #instance_class = eval(arg)
-                    #instance = instance_class(console_storage[obj_id])
-                    #print(instance)
-                    print(console_storage[obj_id])
+                    instance_list.append(str(console_storage[obj_id]))
+        print(instance_list)
 
     def do_update(self, arg):
         """Update command to add or update an instance's attribute based on the class name and id, then save the change into the JSON file\n"""
+        # Check following conditions have been met:
+        # All other arguments should not be used(Ex: $ update BaseModel 1234-1234-1234 email "airbnb@holbertonschool.com" first_name "Betty"= $ update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com")
+        # The attribute value must be casted to the attribute type
         string_list = []
         instance_id = ""
         string_list = arg.split(" ")
@@ -143,8 +135,9 @@ class HBNBCommand(cmd.Cmd):
                 if type(s[obj_id]) != dict:
                     s[obj_id] = s[obj_id].to_dict()
             value = value.strip("\"")
-            # The attribute value must be casted to the attribute type
             s[instance_id].update({key: value})
+            s[instance_id].update(
+                {"updated_at": str(datetime.now().isoformat())})
             storage.save()
 
 
