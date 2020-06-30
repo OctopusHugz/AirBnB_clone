@@ -59,5 +59,17 @@ class TestFileStorage_methods(unittest.TestCase):
             self.assertIn("BaseModel." + b.id, save_text)
             self.assertIn("User." + u.id, save_text)
 
-if __name__ == "__main__":
+    def test_reload(self):
+        """test reload"""
+        b = BaseModel()
+        u = User()
+        models.storage.new(b)
+        models.storage.new(u)
+        models.storage.save()
+        models.storage.reload()
+        objs = FileStorage().all()
+        self.assertIn("BaseModel." + b.id, objs)
+        self.assertIn("User." + u.id, objs)
+
+if __name__ == '__main__':
     unittest.main()
