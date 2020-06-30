@@ -100,12 +100,12 @@ string representation of all instances in storage\n"""
                 instance_list.append(str(console_storage[obj_id]))
         elif arg not in HBNBCommand.class_list:
             print("** class doesn't exist **")
+            return
         else:
             for obj_id in console_storage:
                 if console_storage[obj_id].__class__.__name__ == arg:
                     instance_list.append(str(console_storage[obj_id]))
-        if len(console_storage) != 0:
-            print(instance_list)
+        print(instance_list)
 
     def do_update(self, arg):
         """Update command to add or update an instance's attribute based on
