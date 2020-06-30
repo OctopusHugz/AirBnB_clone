@@ -34,3 +34,6 @@ class TestConsole(unittest.TestCase):
         """test EOF command"""
         c = self.create()
         self.assertTrue(c.onecmd("EOF"))
+
+if __name__ == '__main__':
+    unittest.main()
