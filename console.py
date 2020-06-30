@@ -26,9 +26,8 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Create command to create a new instance of BaseModel,
-        saves it to the JSON file and print the id
-        """
+        """Create command to create a new instance, save it to the
+JSON file and print the id\n"""
         if not arg:
             print("** class name missing **")
         elif arg not in HBNBCommand.class_list:
@@ -42,9 +41,8 @@ class HBNBCommand(cmd.Cmd):
             new_model.save()
 
     def do_show(self, arg):
-        """Show command to print the string representation
-        of an instance based on the class name and id
-        """
+        """Show command to print the string representation of an instance
+based on the class name and id\n"""
         string_list = []
         instance_id = ""
         string_list = arg.split(" ")
@@ -67,9 +65,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Destroy command to delete an instance based on
-        the class name and id, then save the change into the JSON file
-        """
+        """Destroy command to delete an instance based on the class name
+and id, then save the change into the JSON file\n"""
         string_list = []
         instance_id = ""
         string_list = arg.split(" ")
@@ -93,10 +90,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
-        """All command to print the string representation of all
-        instances in storage, based on the class name if given.
-        If not, print the string representation of all instances in storage
-        """
+        """All command to print the string representation of all instances in
+storage, based on the class name if given. If not, print the
+string representation of all instances in storage\n"""
         console_storage = storage.all()
         instance_list = []
         if not arg:
@@ -104,22 +100,18 @@ class HBNBCommand(cmd.Cmd):
                 instance_list.append(str(console_storage[obj_id]))
         elif arg not in HBNBCommand.class_list:
             print("** class doesn't exist **")
-            return
         else:
             for obj_id in console_storage:
                 if console_storage[obj_id].__class__.__name__ == arg:
                     instance_list.append(str(console_storage[obj_id]))
-        print(instance_list)
+        if len(console_storage) != 0:
+            print(instance_list)
 
     def do_update(self, arg):
-        """Update command to add or update an instance's
-        attribute based on the class name and id, then
-        save the change into the JSON file"""
+        """Update command to add or update an instance's attribute based on
+the class name and id, then save the change into the JSON file\n"""
         # Check following conditions have been met:
-        # All other arguments should not be used
-        # (Ex: $ update BaseModel 1234-1234-1234 email
-        # "airbnb@holbertonschool.com" first_name "Betty"= $
-        # update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com")
+        # A string argument with a space must be between double quote
         # The attribute value must be casted to the attribute type
         string_list = []
         instance_id = ""
