@@ -14,11 +14,11 @@ class HBNBCommand(cmd.Cmd):
     # Do we need to override do_help(self, arg) or can we just use docstring?
 
     def do_quit(self, arg):
-        """Quit command to exit the console"""
+        """Quit command to exit the console\n"""
         return True
 
     def do_EOF(self, arg):
-        """EOF command to exit the console"""
+        """EOF command to exit the console\n"""
         return True
 
     def emptyline(self):
