@@ -9,7 +9,8 @@ class BaseModel:
     """This is an instance of the BaseModel class"""
 
     def __init__(self, *args, **kwargs):
-        """This function creates an instance of the BaseModel class, *args is ignored"""
+        """This function creates an instance
+        of the BaseModel class, *args is ignored"""
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
@@ -24,8 +25,10 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
-        """This function returns the string representation of a BaseModel object"""
-        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+        """This function returns the string
+        representation of a BaseModel object"""
+        return "[{}] ({}) {}"\
+            .format(type(self).__name__, self.id, self.__dict__)
 
     def save(self):
         """Update the instance's updated_at attribute with the current time"""
