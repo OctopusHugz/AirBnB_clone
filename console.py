@@ -15,12 +15,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """Quit command to exit the console"""
-        exit()
+        return True
 
     def do_EOF(self, arg):
         """EOF command to exit the console"""
-        print()
-        exit()
+        return True
 
     def emptyline(self):
         """Empty line method that does nothing"""
@@ -105,6 +104,7 @@ class HBNBCommand(cmd.Cmd):
                 instance_list.append(str(console_storage[obj_id]))
         elif arg not in HBNBCommand.class_list:
             print("** class doesn't exist **")
+            return
         else:
             for obj_id in console_storage:
                 if console_storage[obj_id].__class__.__name__ == arg:
@@ -149,7 +149,11 @@ class HBNBCommand(cmd.Cmd):
                 if type(s[obj_id]) != dict:
                     s[obj_id] = s[obj_id].to_dict()
             value = value.strip("\"")
-            s[instance_id].update({key: value})
+            try:
+                s[instance_id].update({key: value})
+            except:
+                print("** no instance found **")
+                return
             s[instance_id].update(
                 {"updated_at": str(datetime.now().isoformat())})
             storage.save()
