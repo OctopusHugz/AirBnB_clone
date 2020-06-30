@@ -71,5 +71,16 @@ class TestFileStorage_methods(unittest.TestCase):
         self.assertIn("BaseModel." + b.id, objs)
         self.assertIn("User." + u.id, objs)
 
+    def test_new(self):
+        """test new"""
+        b = BaseModel()
+        u = User()
+        models.storage.new(b)
+        models.storage.new(u)
+        models.storage.save()
+        objs = FileStorage().all()
+        self.assertIn("BaseModel." + b.id, objs)
+        self.assertIn("User." + u.id, objs)
+
 if __name__ == '__main__':
     unittest.main()
