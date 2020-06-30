@@ -82,5 +82,14 @@ class TestFileStorage_methods(unittest.TestCase):
         self.assertIn("BaseModel." + b.id, objs)
         self.assertIn("User." + u.id, objs)
 
+    def test__file_path(self):
+        """test file path"""
+        dic = FileStorage._FileStorage__file_path
+        self.assertEqual("file.json", dic)
+
+    def test__objects(self):
+        """test objects"""
+        pass
+
 if __name__ == '__main__':
     unittest.main()
