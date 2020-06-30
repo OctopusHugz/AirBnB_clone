@@ -3,6 +3,7 @@ import unittest
 from models.base_model import BaseModel
 import datetime
 import models
+import pep8
 
 
 class TestBaseModel(unittest.TestCase):
@@ -63,6 +64,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(type(m1_dict["created_at"]),
                             type(self.test_model1.__dict__["created_at"]))
         self.assertNotEqual(m1_dict, m2_dict)
+
+    def test_pep8_conformance(self):
+        """load_from_file Docstring Test"""
+        print("test_test_pep8_conformance")
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/base_model.py'])
+        self.assertEqual(result.total_errors, 0)
 
 if __name__ == '__main__':
     unittest.main()

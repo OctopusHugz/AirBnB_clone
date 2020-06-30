@@ -6,6 +6,7 @@ from unittest.mock import create_autospec
 from console import HBNBCommand
 from io import StringIO
 from test.support import captured_stdout, captured_stderr
+import pep8
 
 
 class TestConsole(unittest.TestCase):
@@ -34,6 +35,13 @@ class TestConsole(unittest.TestCase):
         """test EOF command"""
         c = self.create()
         self.assertTrue(c.onecmd("EOF"))
+
+    def test_pep8_conformance(self):
+        """load_from_file Docstring Test"""
+        print("test_test_pep8_conformance")
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['console.py'])
+        self.assertEqual(result.total_errors, 0)
 
 if __name__ == '__main__':
     unittest.main()
