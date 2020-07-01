@@ -3,6 +3,11 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 from models import storage
 from datetime import datetime
 
@@ -10,8 +15,8 @@ from datetime import datetime
 class HBNBCommand(cmd.Cmd):
     """This class creates an instance of the HBNB Command interpreter"""
     prompt = "(hbnb) "
-    class_list = ["BaseModel", "User"]
-    # Do we need to override do_help(self, arg) or can we just use docstring?
+    class_list = ["BaseModel", "User", "Place",
+                  "State", "City", "Amenity", "Review"]
 
     def do_quit(self, arg):
         """Quit command to exit the console\n"""
@@ -38,6 +43,16 @@ JSON file and print the id\n"""
                 new_model = BaseModel()
             elif arg == "User":
                 new_model = User()
+            elif arg == "Place":
+                new_model = Place()
+            elif arg == "State":
+                new_model = State()
+            elif arg == "City":
+                new_model = City()
+            elif arg == "Amenity":
+                new_model = Amenity()
+            elif arg == "Review":
+                new_model = Review()
             print(new_model.id)
             new_model.save()
 
