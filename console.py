@@ -168,30 +168,30 @@ the class name and id, then save the change into the JSON file\n"""
 was used"""
         storage_copy = storage.all()
         count = 0
-        all_check = line[-5:-2]
-        count_check = line[-7:-2]
-        show_check = line[-44:-40]
+        command = ""
         cmd_string = ""
+        short_cs = ""
         instance_id = line[-38:-2]
-        if all_check == "all":
-            class_name = line[:-6]
+        try:
+            dot_index = line.index(".")
+            class_name = line[:dot_index]
+            command = line.split(".")[1]
+            command = command.split("(")[0]
+        except:
+            pass
+        if command == "all":
             cmd_string = "all " + class_name
             return cmd_string
-        elif count_check == "count":
-            class_name = line[:-8]
+        elif command == "count":
             for objs in storage_copy:
                 if storage_copy[objs].__class__.__name__ == class_name:
                     count += 1
             print(count)
             return ""
-        elif show_check == "show":
-            class_name = line[:-45]
+        elif command == "show":
             cmd_string = "show " + class_name + " " + instance_id
             return cmd_string
         else:
-            if len(instance_id) != 36 and line != "EOF":
-                print("** no instance found **")
-                return ""
             return line
 
 
