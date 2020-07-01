@@ -140,6 +140,32 @@ class TestFileStorage_methods(unittest.TestCase):
         self.assertIn("City." + c.id, objs)
         self.assertIn("Amenity." + a.id, objs)
         self.assertIn("Review." + r.id, objs)
+    
+    def test_all(self):
+        """ test all method"""
+        b = BaseModel()
+        u = User()
+        s = State()
+        p = Place()
+        c = City()
+        a = Amenity()
+        r = Review()
+        models.storage.new(b)
+        models.storage.new(u)
+        models.storage.new(s)
+        models.storage.new(p)
+        models.storage.new(c)
+        models.storage.new(a)
+        models.storage.new(r)
+        models.storage.save()
+        al = FileStorage().all()
+        self.assertIn("BaseModel." + b.id, al)
+        self.assertIn("User." + u.id, al)
+        self.assertIn("State." + s.id, al)
+        self.assertIn("Place." + p.id, al)
+        self.assertIn("City." + c.id, al)
+        self.assertIn("Amenity." + a.id, al)
+        self.assertIn("Review." + r.id, al)
 
     def test__file_path(self):
         """test file path"""
