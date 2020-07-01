@@ -34,6 +34,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """Create command to create a new instance, save it to the
 JSON file and print the id\n"""
+        new_model = ""
         if not arg:
             print("** class name missing **")
         elif arg not in HBNBCommand.class_list:
@@ -128,6 +129,8 @@ string representation of all instances in storage\n"""
 the class name and id, then save the change into the JSON file\n"""
         string_list = []
         instance_id = ""
+        value = ""
+        key = ""
         string_list = arg.split(" ")
         if len(string_list) >= 1:
             class_name = string_list[0]
@@ -172,6 +175,7 @@ was used"""
         cmd_string = ""
         attribute = ""
         value = ""
+        class_name = ""
         instance_id = line[-38:-2]
         try:
             dot_index = line.index(".")
@@ -206,12 +210,25 @@ was used"""
             instance_id = line.split("(")[1]
             instance_id = instance_id.split(",")[0]
             instance_id = instance_id.strip("\"")
-            cmd_string = "update " + class_name + " " + \
-                instance_id + " " + attribute + " " + value
-            return cmd_string
+            dictionary = line.split(",", 1)[1]
+            dictionary = dictionary.strip()
+            dictionary = dictionary.strip(")")
+            try:
+                dict_copy = eval(dictionary)
+                instance_id = class_name + "." + instance_id
+                storage_copy[instance_id] = storage_copy[instance_id].to_dict()
+                storage_copy[instance_id].update(dict_copy)
+                storage.save()
+                return ""
+            except:
+                cmd_string = "update " + class_name + " " + \
+                    instance_id + " " + attribute + " " + value
+                return cmd_string
         else:
             return line
 
+
+# , {'first_name': "John", "age": 89})
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
