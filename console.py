@@ -221,14 +221,13 @@ was used"""
                 storage.save()
                 return ""
             except:
+                instance_id = line[-38:-2]
                 cmd_string = "update " + class_name + " " + \
                     instance_id + " " + attribute + " " + value
                 return cmd_string
         else:
             return line
 
-
-# , {'first_name': "John", "age": 89})
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
