@@ -213,15 +213,14 @@ was used"""
             dictionary = line.split(",", 1)[1]
             dictionary = dictionary.strip()
             dictionary = dictionary.strip(")")
-            try:
-                dict_copy = eval(dictionary)
+            dict_copy = eval(dictionary)
+            if type(dict_copy) is dict:
                 instance_id = class_name + "." + instance_id
                 storage_copy[instance_id] = storage_copy[instance_id].to_dict()
                 storage_copy[instance_id].update(dict_copy)
                 storage.save()
                 return ""
-            except:
-                instance_id = line[-38:-2]
+            else:
                 cmd_string = "update " + class_name + " " + \
                     instance_id + " " + attribute + " " + value
                 return cmd_string
