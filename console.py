@@ -126,9 +126,6 @@ string representation of all instances in storage\n"""
     def do_update(self, arg):
         """Update command to add or update an instance's attribute based on
 the class name and id, then save the change into the JSON file\n"""
-        # Check following conditions have been met:
-        # A string argument with a space must be between double quote
-        # The attribute value must be casted to the attribute type
         string_list = []
         instance_id = ""
         string_list = arg.split(" ")
@@ -165,6 +162,18 @@ the class name and id, then save the change into the JSON file\n"""
             s[instance_id].update(
                 {"updated_at": str(datetime.now().isoformat())})
             storage.save()
+
+    def precmd(self, line):
+        """Parses the command entered to see if class_name.command syntax
+was used"""
+        all_check = line[-5:]
+        if all_check == "all()":
+            cmd_string = ""
+            class_name = line[:-6]
+            cmd_string = "all " + class_name
+            return cmd_string
+        else:
+            return line
 
 
 if __name__ == "__main__":
