@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import unittest
+from models.place import Place
 import datetime
 
 
@@ -7,7 +8,8 @@ class TestPlace(unittest.TestCase):
     """ Unit Tests for User Place """
     def setUp(self):
         """setup for test of Place"""
-        pass
+        p1 = Place()
+        p2 = Place()
 
     def test_setup(self):
         """test setup of Place"""
