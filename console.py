@@ -172,6 +172,7 @@ was used"""
         count_check = line[-7:-2]
         show_check = line[-44:-40]
         cmd_string = ""
+        instance_id = line[-38:-2]
         if all_check == "all":
             class_name = line[:-6]
             cmd_string = "all " + class_name
@@ -184,11 +185,13 @@ was used"""
             print(count)
             return ""
         elif show_check == "show":
-            instance_id = line[-38:-2]
             class_name = line[:-45]
             cmd_string = "show " + class_name + " " + instance_id
             return cmd_string
         else:
+            if len(instance_id) != 36 and line != "EOF":
+                print("** no instance found **")
+                return ""
             return line
 
 
