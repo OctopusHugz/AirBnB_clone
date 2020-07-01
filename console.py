@@ -170,13 +170,21 @@ was used"""
         count = 0
         command = ""
         cmd_string = ""
-        short_cs = ""
+        attribute = ""
+        value = ""
         instance_id = line[-38:-2]
         try:
             dot_index = line.index(".")
             class_name = line[:dot_index]
             command = line.split(".")[1]
             command = command.split("(")[0]
+            attribute = line.split(",")[1]
+            attribute = attribute.strip()
+            attribute = attribute.strip("\"")
+            value = line.split(",")[2]
+            value = value.strip()
+            value = value[:-1]
+            value = value.strip("\"")
         except:
             pass
         if command == "count":
@@ -193,6 +201,13 @@ was used"""
             return cmd_string
         elif command == "destroy":
             cmd_string = "destroy " + class_name + " " + instance_id
+            return cmd_string
+        elif command == "update":
+            instance_id = line.split("(")[1]
+            instance_id = instance_id.split(",")[0]
+            instance_id = instance_id.strip("\"")
+            cmd_string = "update " + class_name + " " + \
+                instance_id + " " + attribute + " " + value
             return cmd_string
         else:
             return line
