@@ -7,20 +7,34 @@ import datetime
 class TestUser(unittest.TestCase):
     """ Unit Tests for User Class """
     def setUp(self):
-        """setup for test of user"""
-        pass
+        """setup for testing"""
+        self.mod1 = User()
+        self.mod2 = User()
 
     def test_setup(self):
-        """test setup of User"""
-        pass
+        """test insatiation """
+        self.assertTrue(hasattr(self.mod1, "email"))
+        self.assertTrue(hasattr(self.mod1, "password"))
+        self.assertTrue(hasattr(self.mod1, "last_name"))
+        self.assertTrue(hasattr(self.mod1, "first_name"))
+        self.assertTrue(self.mod1.id != self.mod2.id)
+        one = self.mod1.created_at
+        two = self.mod2.created_at
+        self.assertTrue(one != two)
 
     def test_types(self):
-        """test Types"""
-        pass
+        """test user types"""
+        self.assertTrue(type(self.mod1.email) is str)
+        self.assertTrue(type(self.mod1.password) is str)
+        self.assertTrue(type(self.mod1.last_name) is str)
+        self.assertTrue(type(self.mod1.first_name) is str)
 
     def test_save(self):
-        """test save """
-        pass
+        """test save"""
+        new = self.mod1.updated_at
+        self.mod1.save()
+        new_saved = self.mod1.updated_at
+        self.assertFalse(new == new_saved)
 
 if __name__ == '__main__':
     unittest.main()
