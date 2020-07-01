@@ -179,17 +179,20 @@ was used"""
             command = command.split("(")[0]
         except:
             pass
-        if command == "all":
-            cmd_string = "all " + class_name
-            return cmd_string
-        elif command == "count":
+        if command == "count":
             for objs in storage_copy:
                 if storage_copy[objs].__class__.__name__ == class_name:
                     count += 1
             print(count)
             return ""
+        elif command == "all":
+            cmd_string = "all " + class_name
+            return cmd_string
         elif command == "show":
             cmd_string = "show " + class_name + " " + instance_id
+            return cmd_string
+        elif command == "destroy":
+            cmd_string = "destroy " + class_name + " " + instance_id
             return cmd_string
         else:
             return line
