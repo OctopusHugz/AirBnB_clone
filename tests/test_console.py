@@ -78,37 +78,37 @@ class TestConsole(unittest.TestCase):
     def test_BaseModel_all(self):
         """test BaseModel all"""
         with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd("BaseModel.all()"))
+            self.assertFalse(HBNBCommand().onecmd(".all()"))
 
     def test_Review_all(self):
         """test BaseModel all"""
         with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd("Review.all()"))
+            self.assertFalse(HBNBCommand().onecmd(".all()"))
 
     def test_User_all(self):
         """test BaseModel all"""
         with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd("User.all()"))
+            self.assertFalse(HBNBCommand().onecmd(".all()"))
 
     def test_State_all(self):
         """test BaseModel all"""
         with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd("State.all()"))
+            self.assertFalse(HBNBCommand().onecmd(".all()"))
 
     def test_City_all(self):
         """test BaseModel all"""
         with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd("City.all()"))
+            self.assertFalse(HBNBCommand().onecmd(".all()"))
 
     def test_Amenity_all(self):
         """test BaseModel all"""
         with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd("Amenity.all()"))
+            self.assertFalse(HBNBCommand().onecmd(".all()"))
 
     def test_Place_all(self):
         """test BaseModel all"""
         with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd("Place.all()"))
+            self.assertFalse(HBNBCommand().onecmd(".all()"))
 
 if __name__ == "__main__":
     unittest.main()
