@@ -12,6 +12,27 @@ from unittest.mock import patch
 class TestConsole(unittest.TestCase):
     """test empty line from console"""
 
+    @classmethod
+    def setUp(self):
+        """setup for json file"""
+        try:
+            os.rename("file.json", "tmp")
+        except IOError:
+            pass
+        FileStorage.__objects = {}
+
+    @classmethod
+    def tearDown(self):
+        """teardown json file"""
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp", "file.json")
+        except IOError:
+            pass
+
     def test_prompt(self):
         """ test prompt"""
         self.assertEqual("(hbnb) ", HBNBCommand.prompt)
@@ -70,45 +91,23 @@ class TestConsole(unittest.TestCase):
 
     def test_create(self):
         """test create from console"""
-        string = "** class name missing **"
-        with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd("create"))
-            self.assertEqual(string, out.getvalue().strip())
-
-    def test_BaseModel_all(self):
-        """test BaseModel all"""
-        with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd(".all()"))
-
-    def test_Review_all(self):
-        """test BaseModel all"""
-        with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd(".all()"))
-
-    def test_User_all(self):
-        """test BaseModel all"""
-        with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd(".all()"))
-
-    def test_State_all(self):
-        """test BaseModel all"""
-        with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd(".all()"))
-
-    def test_City_all(self):
-        """test BaseModel all"""
-        with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd(".all()"))
-
-    def test_Amenity_all(self):
-        """test BaseModel all"""
-        with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd(".all()"))
-
-    def test_Place_all(self):
-        """test BaseModel all"""
-        with patch("sys.stdout", new=StringIO()) as out:
-            self.assertFalse(HBNBCommand().onecmd(".all()"))
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            self.assertFalse(HBNBCommand().onecmd("create User"))
+            self.assertFalse(HBNBCommand().onecmd("create State"))
+            self.assertFalse(HBNBCommand().onecmd("create Place"))
+            self.assertFalse(HBNBCommand().onecmd("create City"))
+            self.assertFalse(HBNBCommand().onecmd("create Amenity"))
+            self.assertFalse(HBNBCommand().onecmd("create Review"))
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("all"))
+            self.assertIn("BaseModel", output.getvalue().strip())
+            self.assertIn("User", output.getvalue().strip())
+            self.assertIn("State", output.getvalue().strip())
+            self.assertIn("Place", output.getvalue().strip())
+            self.assertIn("City", output.getvalue().strip())
+            self.assertIn("Amenity", output.getvalue().strip())
+            self.assertIn("Review", output.getvalue().strip())
 
 if __name__ == "__main__":
     unittest.main()
