@@ -24,7 +24,7 @@ The console can be run in both interactive mode and non-interactive mode. Intera
 
 Starting the console is easy! Just type:
 
-`./console.py` - if the program file is in the current working directory.\
+`./console.py` - if the program file is in the current working directory.
 
 This command will start the console and begin interpreting commands. You'll know the console has launched when you see the prompt:
 
@@ -37,45 +37,45 @@ Now that you've launched the console, let's explore how to use it!
 
 It would be a shame to let the incredible power of the console go to waste! It's deceptively easy to use. Please note the syntax will vary slightly depending on whether you're running the console in interactive mode or non-interactive mode. Also, in interactive mode, you have the choice between space syntax and method syntax. Also note, the `count` function is only available using method syntax. In non-interactive mode, you must pipe the commands into the `./console.py` file.
 
-# Space Syntax
+### Space Syntax
 
 `command class id`
 
-# Method Syntax
+### Method Syntax
 
 `class.command("id")`
 
 The `update` command has special powers. It has 2 different ways to update the instance by either selecting a specific attribute to update, or by updating from a dictionary:
 
-Specific Attribute
+#### Specific Attribute
 
 `class.update("id", attribute, value)`
 
-From Dictionary
+#### From Dictionary
 
 `class.update("id", {key: value, key:value})`
 
-# Interactive Mode
+### Interactive Mode
 
 `(hbnb) create BaseModel` - interactive mode
 `(hbnb) show BaseModel 64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce` - interactive mode using space syntax\
-`(hbnb) BaseModel.show("64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce")` - interactive mode using method syntax\
+`(hbnb) BaseModel.show("64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce")` - interactive mode using method syntax
 
-# Non-Interactive Mode
+### Non-Interactive Mode
 
 `echo "create BaseModel" | ./console.py` - non-interactive mode\
 `echo "show BaseModel 64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce" | ./console.py` - non-interactive mode using space syntax\
-`echo "BaseModel.show(\"64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce\")" | ./console.py` - non- interactive mode using method syntax\
+`echo "BaseModel.show(\"64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce\")" | ./console.py` - non- interactive mode using method syntax
 
-# Exiting the Console
+### Exiting the Console
 
 You can exit the console in multiple ways:
 
-`CTRL-D` to signal `EOF`
+`CTRL-D` to signal `EOF`<br>
 `quit` command
 
 ---
-## **Examples**
+## **Example**
 
 Below is a sample session showing all the functions available in the console. If you copy the commands in the example, you can track the changes to your objects in real-time by observing the `file.json`:
 
