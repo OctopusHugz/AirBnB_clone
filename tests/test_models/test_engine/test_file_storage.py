@@ -3,6 +3,7 @@
 import os
 import json
 from datetime import datetime
+from models import storage
 from models.base_model import BaseModel
 import models
 import unittest
@@ -143,13 +144,14 @@ class TestFileStorage_methods(unittest.TestCase):
         self.assertIn("Review." + r.id, objs)
 
     def test__file_path(self):
-        """test file path"""
+        """test __file_path"""
         dic = FileStorage._FileStorage__file_path
         self.assertEqual("file.json", dic)
 
-    # def test__objects(self):
-    #    """test objects"""
-    #    pass
+    def test__objects(self):
+        """test __objects"""
+        fs = storage.all()
+        self.assertEqual(type(fs), dict)
 
 
 if __name__ == '__main__':

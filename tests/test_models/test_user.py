@@ -6,6 +6,7 @@ import datetime
 
 class TestUser(unittest.TestCase):
     """ Unit Tests for User Class """
+
     def setUp(self):
         """setup for testing"""
         self.mod1 = User()
@@ -20,7 +21,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(self.mod1.id != self.mod2.id)
         one = self.mod1.created_at
         two = self.mod2.created_at
-        self.assertTrue(one != two)
+        self.assertTrue(one is not two)
 
     def test_types(self):
         """test user types"""
@@ -35,6 +36,7 @@ class TestUser(unittest.TestCase):
         self.mod1.save()
         new_saved = self.mod1.updated_at
         self.assertFalse(new == new_saved)
+
 
 if __name__ == '__main__':
     unittest.main()
