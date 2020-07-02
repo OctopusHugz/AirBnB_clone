@@ -221,7 +221,11 @@ was used"""
             dict_copy = eval(dictionary)
             if type(dict_copy) is dict:
                 instance_id = class_name + "." + instance_id
-                storage_copy[instance_id] = storage_copy[instance_id].to_dict()
+                try:
+                    storage_copy[instance_id] = storage_copy[instance_id].to_dict()
+                except:
+                    print("** no instance found **")
+                    return ""
                 storage_copy[instance_id].update(dict_copy)
                 storage.save()
                 return ""
