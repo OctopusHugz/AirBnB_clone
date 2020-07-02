@@ -166,6 +166,11 @@ the class name and id, then save the change into the JSON file\n"""
                 {"updated_at": str(datetime.now().isoformat())})
             storage.save()
 
+    def preloop(self):
+        from subprocess import call
+        import os
+        call('clear' if os.name == 'posix' else 'cls')
+
     def precmd(self, line):
         """Parses the command entered to see if class_name.command syntax
 was used"""

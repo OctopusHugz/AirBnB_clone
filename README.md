@@ -1,5 +1,5 @@
 # **AirBnB Clone - The Console**
----
+
 ## **Project Description**
 
 This project is the beginning of building the AirBnB Clone. It focuses on the concepts of data models and data persistence. Data models are how users interact with real-world objects that are represented in the computer's memory. Data persistence is the idea that any changes we make to the objects are permanently saved and persist indefinitely. An example might be an AirBnB host that wants to change their nightly rate. Without data persistence, that change would occur, but there would be no record that it happened. And thus, the user would still see the same nightly rate. The goal of this project is to architect both the infrastructure to store objects in file storage, and also the command line interface through which we will manipulate the objects in file storage. Enter the console.
@@ -57,14 +57,14 @@ The `update` command has special powers. It has 2 different ways to update the i
 
 ### Interactive Mode
 
-`(hbnb) create BaseModel` - interactive mode
-`(hbnb) show BaseModel 64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce` - interactive mode using space syntax\
+`(hbnb) create BaseModel` - interactive mode<br>
+`(hbnb) show BaseModel 64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce` - interactive mode using space syntax<br>
 `(hbnb) BaseModel.show("64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce")` - interactive mode using method syntax
 
 ### Non-Interactive Mode
 
-`echo "create BaseModel" | ./console.py` - non-interactive mode\
-`echo "show BaseModel 64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce" | ./console.py` - non-interactive mode using space syntax\
+`echo "create BaseModel" | ./console.py` - non-interactive mode<br>
+`echo "show BaseModel 64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce" | ./console.py` - non-interactive mode using space syntax<br>
 `echo "BaseModel.show(\"64dfa5b0-33e8-4aa0-8bd7-b622e1ae04ce\")" | ./console.py` - non- interactive mode using method syntax
 
 ### Exiting the Console
