@@ -78,7 +78,7 @@ based on the class name and id\n"""
             console_storage = storage.all()
             try:
                 print(console_storage[instance_id])
-            except:
+            except Exception as e:
                 print("** no instance found **")
 
     def do_destroy(self, arg):
@@ -103,7 +103,7 @@ and id, then save the change into the JSON file\n"""
             try:
                 del (console_storage[instance_id])
                 storage.save()
-            except:
+            except Exception as e:
                 print("** no instance found **")
 
     def do_all(self, arg):
@@ -159,7 +159,7 @@ the class name and id, then save the change into the JSON file\n"""
             value = value.strip("\"")
             try:
                 s[instance_id].update({key: value})
-            except:
+            except Exception as e:
                 print("** no instance found **")
                 return
             s[instance_id].update(
@@ -194,7 +194,7 @@ was used"""
             value = value.strip()
             value = value[:-1]
             value = value.strip("\"")
-        except:
+        except Exception as e:
             pass
         if command == "count":
             for objs in storage_copy:
@@ -220,13 +220,13 @@ was used"""
             dictionary = dictionary.strip(")")
             dict_copy = eval(dictionary)
             if type(dict_copy) is dict:
-                instance_id = class_name + "." + instance_id
+                inst_id = class_name + "." + instance_id
                 try:
-                    storage_copy[instance_id] = storage_copy[instance_id].to_dict()
-                except:
+                    storage_copy[inst_id] = storage_copy[inst_id].to_dict()
+                except Exception as e:
                     print("** no instance found **")
                     return ""
-                storage_copy[instance_id].update(dict_copy)
+                storage_copy[inst_id].update(dict_copy)
                 storage.save()
                 return ""
             else:
