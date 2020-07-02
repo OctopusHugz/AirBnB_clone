@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""This module tests the FileStorage instance"""
 import os
 import json
 from datetime import datetime
@@ -145,6 +146,11 @@ class TestFileStorage_methods(unittest.TestCase):
         """test file path"""
         dic = FileStorage._FileStorage__file_path
         self.assertEqual("file.json", dic)
+
+    # def test__objects(self):
+    #    """test objects"""
+    #    pass
+
 
 if __name__ == '__main__':
     unittest.main()
