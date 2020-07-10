@@ -81,4 +81,5 @@ div:hover > .popover {
 
 .amenities .popover li {
   padding: 10px 0px;
+  text-indent: 20px;
 }
