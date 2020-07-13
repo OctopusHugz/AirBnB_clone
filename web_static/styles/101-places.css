@@ -66,17 +66,17 @@ h2 {
 }
 
 .max_guest {
-  background-image: url(./guests.png);
+  background-image: url(../images/guests.png);
   background-repeat: no-repeat;
 }
 
 .number_rooms {
-  background-image: url(./bed.png);
+  background-image: url(../images/bed.png);
   background-repeat: no-repeat;
 }
 
 .number_bathrooms {
-  background-image: url(./bath.png);
+  background-image: url(../images/bath.png);
   background-repeat: no-repeat;
 }
 
@@ -147,13 +147,13 @@ article > div.amenities > ul > li {
 }
 
 .wifi-icon {
-  background-image: url(./wifi.png);
+  background-image: url(../images/wifi.png);
 }
 
 .tv-icon {
-  background-image: url(./tv.png);
+  background-image: url(../images/tv.png);
 }
 
 .pet-icon {
-  background-image: url(./pet.png);
+  background-image: url(../images/pet.png);
 }
