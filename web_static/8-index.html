@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>AirBnB clone</title>
-	<link rel="icon" href="icon.png">
+	<link rel="icon" href="images/icon.png">
 	<link rel="stylesheet" href="styles/3-header.css">
 	<link rel="stylesheet" href="styles/3-footer.css">
 	<link rel="stylesheet" href="styles/4-common.css">
@@ -15,124 +15,131 @@
 
 <body>
 	<header></header>
-	<div class="container">
-		<section class="filters">
-			<div class="locations">
-				<h3>States</h3>
-				<h4>Alaska, Arizona...</h4>
-				<ul class="popover">
-					<li>
-						<h2>Alaska:</h2>
-					</li>
-					<li class="city">Anchorage</li>
-					<li class="city">Nome</li>
-					<li>
-						<h2>Arizona:</h2>
-					</li>
-					<li class="city">Tempe</li>
-					<li class="city">Tucson</li>
-				</ul>
-			</div>
-			<div class="amenities">
-				<h3>Amenities</h3>
-				<h4>Breakfast, Internet...</h4>
-				<ul class="popover">
-					<li>Breakfast</li>
-					<li>Internet</li>
-					<li>TV</li>
-					<li>City Guide</li>
-				</ul>
-			</div>
-			<button>Search</button>
-		</section>
-		<section class="places">
-			<h1>Places</h1>
-			<div class="places-wrapper">
-				<article>
-					<div class="article-wrapper">
-						<h2>Ocean Oasis</h2>
-						<div class="price_by_night">
-							<p>$200</p>
+	<main>
+		<div class="container">
+			<section class="filters">
+				<div class="locations">
+					<h3>States</h3>
+					<h4>Alaska, Arizona...</h4>
+					<ul class="popover">
+						<li>
+							<h2>Alaska:</h2>
+						</li>
+						<li class="city">Anchorage</li>
+						<li class="city">Nome</li>
+						<li>
+							<h2>Arizona:</h2>
+						</li>
+						<li class="city">Tempe</li>
+						<li class="city">Tucson</li>
+					</ul>
+				</div>
+				<div class="amenities">
+					<h3>Amenities</h3>
+					<h4>Breakfast, Internet...</h4>
+					<ul class="popover">
+						<li>Breakfast</li>
+						<li>Internet</li>
+						<li>TV</li>
+						<li>City Guide</li>
+					</ul>
+				</div>
+				<button>Search</button>
+			</section>
+			<section class="places">
+				<h1>Places</h1>
+				<div class="places-wrapper">
+					<article>
+						<div class="article-wrapper">
+							<h2>Ocean Oasis</h2>
+							<div class="price_by_night">
+								<p>$200</p>
+							</div>
 						</div>
-					</div>
-					<div class="information">
-						<div class="max_guest">
-							<p>6 Guests</p>
+						<div class="information">
+							<div class="max_guest">
+								<p>6 Guests</p>
+							</div>
+							<div class="number_rooms">
+								<p>3 Bedrooms</p>
+							</div>
+							<div class="number_bathrooms">
+								<p>3 Bathrooms</p>
+							</div>
 						</div>
-						<div class="number_rooms">
-							<p>3 Bedrooms</p>
+						<div class="user">
+							<div class="bold">Owner:&nbsp;</div>
+							Mac Miller
 						</div>
-						<div class="number_bathrooms">
-							<p>3 Bathrooms</p>
+						<div class="description">
+							<p>If you listen closely, you can hear the waves crashing in the background. Surfing right
+								outside
+								your back door. Moonlit strolls along white sand beaches. Catch the wave with a handful
+								of
+								friends in this 3 Bed/3 Bath Ocean Oasis!</p>
 						</div>
-					</div>
-					<div class="user">
-						<div class="bold">Owner:&nbsp;</div>
-						Mac Miller
-					</div>
-					<div class="description">
-						<p>If you listen closely, you can hear the waves crashing in the background. Surfing right
-							outside
-							your back door. Moonlit strolls along white sand beaches. Catch the wave with a handful of
-							friends in this 3 Bed/3 Bath Ocean Oasis!</p>
-					</div>
-				</article>
-				<article>
-					<div class="article-wrapper">
-						<h2>Mountain House</h2>
-						<div class="price_by_night">$125</div>
-					</div>
-					<div class="information">
-						<div class="max_guest">
-							<p>4 Guests</p>
+					</article>
+					<article>
+						<div class="article-wrapper">
+							<h2>Mountain House</h2>
+							<div class="price_by_night">$125</div>
 						</div>
-						<div class="number_rooms">
-							<p>2 Bedrooms</p>
+						<div class="information">
+							<div class="max_guest">
+								<p>4 Guests</p>
+							</div>
+							<div class="number_rooms">
+								<p>2 Bedrooms</p>
+							</div>
+							<div class="number_bathrooms">
+								<p>1 Bathroom</p>
+							</div>
 						</div>
-						<div class="number_bathrooms">
-							<p>1 Bathroom</p>
+						<div class="user">
+							<div class="bold">Owner:&nbsp;</div>
+							J. Cole
 						</div>
-					</div>
-					<div class="user">
-						<div class="bold">Owner:&nbsp;</div>
-						J. Cole
-					</div>
-					<div class="description">
-						<p>Freshly packed snow in the winter, crispy daylight in the summer. Hiking, mountain biking,
-							and
-							craft beer all await you. Come escape to the Rocky Mountains in this luxurious 2 Bed/1 Bath
-							Mountain House!</p>
-					</div>
-				</article>
-				<article>
-					<div class="article-wrapper">
-						<h2>Tiny Home</h2>
-						<div class="price_by_night">$75</div>
-					</div>
-					<div class="information">
-						<div class="max_guest">
-							<p>2 Guests</p>
+						<div class="description">
+							<p>Freshly packed snow in the winter, crispy daylight in the summer. Hiking, mountain
+								biking,
+								and
+								craft beer all await you. Come escape to the Rocky Mountains in this luxurious 2 Bed/1
+								Bath
+								Mountain House!</p>
 						</div>
-						<div class="number_rooms">
-							<p>1 Bedroom</p>
+					</article>
+					<article>
+						<div class="article-wrapper">
+							<h2>Tiny Home</h2>
+							<div class="price_by_night">$75</div>
 						</div>
-						<div class="number_bathrooms">
-							<p>1 Bathroom</p>
+						<div class="information">
+							<div class="max_guest">
+								<p>2 Guests</p>
+							</div>
+							<div class="number_rooms">
+								<p>1 Bedroom</p>
+							</div>
+							<div class="number_bathrooms">
+								<p>1 Bathroom</p>
+							</div>
 						</div>
-					</div>
-					<div class="user">
-						<div class="bold">Owner:&nbsp;</div>
-						DJ Funky Knuckles
-					</div>
-					<div class="description">
-						<p>Maybe you want to escape with a good book and your loved one for a few nights. Or maybe you
-							desire a little more romantic flavor. Whatever you're after, we've got you covered in this 1
-							Bed/1 Bath Tiny Home!</p>
-					</div>
-				</article>
-			</div>
-		</section>
-	</div>
+						<div class="user">
+							<div class="bold">Owner:&nbsp;</div>
+							DJ Funky Knuckles
+						</div>
+						<div class="description">
+							<p>Maybe you want to escape with a good book and your loved one for a few nights. Or maybe
+								you
+								desire a little more romantic flavor. Whatever you're after, we've got you covered in
+								this 1
+								Bed/1 Bath Tiny Home!</p>
+						</div>
+					</article>
+				</div>
+			</section>
+		</div>
+	</main>
 	<footer>Holberton School</footer>
 </body>
 

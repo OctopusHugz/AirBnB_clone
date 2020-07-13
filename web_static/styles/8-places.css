@@ -15,7 +15,6 @@ h2 {
   margin: 20px;
   border: 1px solid #ff5a5f;
   border-radius: 4px;
-  /* text-align: center; */
 }
 
 .places-wrapper {
@@ -28,8 +27,6 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: relative;
-	left: 20px; */
   color: #ff5a5f;
   border: 4px solid #ff5a5f;
   border-radius: 50%;
@@ -37,7 +34,6 @@ h2 {
   height: 60px;
   font-size: 30px;
   padding: 10px;
-  /* text-align: right; */
 }
 
 .article-wrapper {
@@ -68,17 +64,17 @@ h2 {
 }
 
 .max_guest {
-  background-image: url(./guests.png);
+  background-image: url(../images/guests.png);
   background-repeat: no-repeat;
 }
 
 .number_rooms {
-  background-image: url(./bed.png);
+  background-image: url(../images/bed.png);
   background-repeat: no-repeat;
 }
 
 .number_bathrooms {
-  background-image: url(./bath.png);
+  background-image: url(../images/bath.png);
   background-repeat: no-repeat;
 }
 
